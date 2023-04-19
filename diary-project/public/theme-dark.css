@@ -1,0 +1,137 @@
+.theme {
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+}
+
+.theme svg path {
+    fill: #222222;
+}
+
+
+.theme:hover {
+	background-color: #121212;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 1);
+}
+.theme:hover svg path {
+	fill: #fff;
+}
+
+.change__theme[data-theme="dark"] {
+    display: none;
+}
+
+.change__theme[data-theme="light"] {
+    display: block;
+}
+
+
+/* Dark */
+
+.window {
+    background-color: #121212;
+}
+
+.window__container {
+	background-color: #212121;
+	filter: drop-shadow(0em 0em 2em rgba(0, 0, 0, .5))
+}
+
+
+.header {
+    background-color: #333333;
+    filter: drop-shadow(0em .5em .5em rgba(0, 0, 0, .5));
+}
+
+.header__container {
+	color: rgb(169, 169, 169);
+}
+
+.header__title {
+	color: rgb(169, 169, 169);
+}
+
+.header__title:visited {
+	color: rgb(169, 169, 169);
+}
+
+.header__title:hover {
+	color: #fff;
+}
+
+.header__title::after {
+	background-color: #fff;
+}
+
+.caption__container {
+	color: #7c7c7c;
+}
+
+.caption__line {
+	background: linear-gradient(90deg, rgba(127, 127, 127, 0) 0%, rgba(127, 127, 127, 0.4) 2%, rgba(127, 127, 127, 0.4) 98%, rgba(127, 127, 127, 0) 100%);
+}
+
+
+.caption__container {
+	color: #7c7c7c;
+}
+
+.caption__line {
+	background: linear-gradient(90deg, rgba(127, 127, 127, 0) 0%, rgba(127, 127, 127, 0.4) 2%, rgba(127, 127, 127, 0.4) 98%, rgba(127, 127, 127, 0) 100%);
+}
+
+
+.time {
+	color: #7c7c7c;
+}
+
+.message {
+    color: rgb(169, 169, 169);
+}
+
+.message-layout {
+    filter: drop-shadow(0em .5em .5em rgba(0, 0, 0, .5));
+    background-color: #333333;
+}
+
+
+.message__functions {
+	background-color: #3c3c3c;
+	border: 1px solid #0000004f;
+}
+
+.message__function-button:hover {
+	background-color: #4a4a4a;
+}
+
+#edit-icon {
+	filter: invert(60%);
+}
+
+#nickname-input {
+    border: 1px solid rgb(169,169,169);
+    padding-left: 10px;
+    color: rgb(169,169,169);
+    border-radius: .5em;
+    background-color: #333333;
+}
+
+
+.message__text-buttons {
+	background-color: #3c3c3c;
+	border: 1px solid #0000004f;
+}
+
+.message__text-button:hover {
+	background-color: #4a4a4a;
+}
+
+
+#message-input {
+	border: 1px solid rgb(169,169,169);
+    padding-left: 10px;
+    color: rgb(169,169,169);
+    border-radius: .5em;
+    background-color: #333333;
+	min-height: 100px;
+	resize: none;
+}
