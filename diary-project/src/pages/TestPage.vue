@@ -36,7 +36,7 @@ const upload = async () => {
 
 
 onMounted( async () => {
-    const { data } = await axios.get('http://localhost:8000/api/person/1', {
+    const { data } = await axios.get('https://psychic-umbrella-diary-project-production.up.railway.app/api/person/1', {
         headers: { 'Content-Type': 'application/json' }
     })
     person.value = data

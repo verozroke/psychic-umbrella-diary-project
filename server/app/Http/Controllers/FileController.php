@@ -17,7 +17,7 @@ class FileController extends Controller
             // return $newFile->getClientOriginalExtension();
             $filepath = $newFile->store('img');
             $person = Person::find(intval($user_id));
-            $oldPath = str_replace("http://localhost:8000/storage/", "", $person->image_path);
+            $oldPath = str_replace("https://psychic-umbrella-diary-project-production.up.railway.app/storage/", "", $person->image_path);
             $person->image_path = asset('/storage/' . $filepath);
             Storage::delete($oldPath);
             $person->save();

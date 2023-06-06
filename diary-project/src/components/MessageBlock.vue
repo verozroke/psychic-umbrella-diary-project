@@ -4,8 +4,6 @@
             <li @click="changeToMessageInput" class="message__function-button"><img id="edit-icon" src="/img/edit.png" alt="edit"></li>
             <li @click="deleteMessage" class="message__function-button"><img id="garbage-icon" src="/img/garbage.png" alt="garbage"></li>
         </ul>
-        <!-- TODO: Make avatar bg dim with icon while hovering -->
-        <!-- TODO: Make some modal component where i will drop image i wanna insert (drag n drop) -->
         <div class="message__avatar" >
             <label for="thumbnail">
                 <div class="message__avatar-overlay"><img src="/img/edit.png" alt=""></div>
@@ -81,7 +79,7 @@ function gatherFormData() {
 
 const uploadAvatar = async () => {
     var formData = gatherFormData()
-    const { data } = await axios.post('http://localhost:8000/api/file/upload/1', 
+    const { data } = await axios.post('https://psychic-umbrella-diary-project-production.up.railway.app/api/file/upload/1', 
     formData, {
         headers: { 'Content-Type': 'multipart/form-data'}
     })
@@ -97,7 +95,7 @@ const editMessage = async ($e) => {
     if ((keyCode === 13 && !$e.shiftKey) || !$e.keyCode) {
         $e.preventDefault();
         props.message.text = messageTextInput.value
-        await axios.put(`http://localhost:8000/api/message/update/${props.message.id}`, {
+        await axios.put(`https://psychic-umbrella-diary-project-production.up.railway.app/api/message/update/${props.message.id}`, {
             text: props.message.text
         }, {
             headers: { 'Content-Type': 'application/json' }
@@ -108,7 +106,7 @@ const editMessage = async ($e) => {
 
 const deleteMessage = async () => {
     emit('delete', props.message.id)    
-    await axios.delete(`http://localhost:8000/api/message/delete/${props.message.id}`, {
+    await axios.delete(`https://psychic-umbrella-diary-project-production.up.railway.app/message/delete/${props.message.id}`, {
         headers: { 'Content-Type': 'application/json' }
     })
 }
@@ -116,7 +114,7 @@ const deleteMessage = async () => {
 const changeNickName = async () => {
     nicknameRef.value = userNicknameInput.value
     changeToInput()
-    await axios.put('http://localhost:8000/api/person/update/name', {
+    await axios.put('https://psychic-umbrella-diary-project-production.up.railway.app/api/person/update/name', {
         id: 1,
         nickname: nicknameRef.value
     }, {

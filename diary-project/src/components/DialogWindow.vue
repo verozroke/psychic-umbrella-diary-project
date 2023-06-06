@@ -2,14 +2,17 @@
         <div class="window">
             <div class="window__container">
                 <HeaderVue/>
-                <div class="loading"></div>
-                <main ref="messages" class="window__messages">
+                <div v-if="isLoading" class="loading">
+                    <ring-loader :loading="isLoading" :color="getColorOfLoading()" size="100px" radius="50%"></ring-loader>
+                </div>
+                <main  ref="messages" class="window__messages">
                     <!-- <UIDateTime :timeUnix="1680530725095"/> -->
-                    <div class="window__day-block day-block" v-for="(dayBlock, index) in messagesData">
+                    <div v-if="!isLoading" class="window__day-block day-block" v-for="(dayBlock, index) in messagesData">
                         <div class="day-block__time"><UIDateTime  :time-unix="dayBlock[0].sended_at"/></div>
                         <div class="day-block__list">
                             <transition-group name="message-list" tag="ul" appear>
                                 <MessageBlock @delete="deleteMessageBlock" v-for="message in dayBlock" :message="message" :user="user" :key="message.id" :id="`messageContainer-${message.id}`" />
+                                
                             </transition-group>
                         </div>
                     </div>
@@ -24,6 +27,7 @@ import HeaderVue from './HeaderVue.vue';
 import Caption from '@components/Caption.vue'
 import UIDateTime from './UI/UIDateTime.vue';
 import MessageBlock from './MessageBlock.vue';
+import RingLoader from 'vue-spinner/src/RingLoader.vue' 
 import { onMounted, reactive, ref } from 'vue';
 import axios from 'axios'
 
@@ -31,10 +35,13 @@ import axios from 'axios'
 const messages = ref(null)
 const bottom = ref(0)
 const messagesData = ref([])
+const isLoading = ref(false)
 
 let user;
 
-
+const getColorOfLoading = () => {
+    return localStorage.getItem('theme') === 'dark' ? ' #fff' : ' #121212'
+}
 
 const deleteMessageBlock = (id) => {
     console.log(messagesData.value)
@@ -59,7 +66,8 @@ const scrollToBottomOfChat = () => {
 
 
 async function getAllMessages() {
-    const response = await axios.get('http://localhost:8000/api/message/all', {
+    isLoading.value = true
+    const response = await axios.get('https://psychic-umbrella-diary-project-production.up.railway.app/api/message/all', {
         headers: {'Content-Type': 'application/json'}
     })
     messagesData.value = response.data[0];
@@ -80,11 +88,12 @@ async function getAllMessages() {
         
         return acc;
     }, {}));
+    isLoading.value = false
     
 }
 
 onMounted(async () => {
-    const { data }  = await axios.get('http://localhost:8000/api/person/1', {
+    const { data }  = await axios.get('https://psychic-umbrella-diary-project-production.up.railway.app/api/person/1', {
         headers: {'Content-Type': 'application/json'}
     })
     user = ref(data)
@@ -121,6 +130,13 @@ onMounted(async () => {
     }
 }
 
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;   
+}
 .day-block {
     width: 100%;
     &__list {

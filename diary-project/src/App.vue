@@ -9,11 +9,10 @@
 @import '@styles/clearStyles.scss';
 @import '@styles/fontStyles.scss';
 
-
 .wrapper {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden;	
     min-height: 100%;
     background-color: #fff;
 }
@@ -27,6 +26,28 @@
     font-style: normal;   
 }
 
+
+::-webkit-scrollbar {
+	width: 13px;
+	
+	background-color: transparent;
+	&-track {
+		background-color: transparent;
+		margin-block: .5em;
+	}
+	&-thumb {
+		background-color: rgba(47, 47, 47, 0.836);
+		border-radius: 100vw;
+		transition: .4s;
+		border: 4px solid rgba(0, 0, 0, 0);
+		background-clip: padding-box;
+		&:hover {
+			background-color: rgb(28, 28, 28);
+			transition: .4s;
+		}
+	}
+	
+}
 
 
 </style>
