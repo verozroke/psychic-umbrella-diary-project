@@ -19,9 +19,6 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v3
-              
-      - name: cd to client
-        run: cd diary-project/
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
